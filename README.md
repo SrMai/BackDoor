@@ -1,2 +1,2 @@
 # BackDoor
-Script en base Python2 para crear una puerta trasera en un equipo Linux, Windows y Android, con la que podrás tener un menú de opciones al estilo msfvenom, solo que no hay parches para este por lo que es indetectable por los antivirus.
+Script en base Python2 para crear una puerta trasera en un equipo Linux, Windows y Android, con la que podrás tener un menú de opciones al estilo msfvenom, solo que este es indetectable por los antivirus, y se inyecta en la carpeta raiz para que sea dificil de encontrar y eliminar.
